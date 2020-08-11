@@ -1,6 +1,10 @@
 FROM debian
 LABEL maintainer=@mlevydaniel
 ARG DEBIAN_FRONTEND=noninteractive
+
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV PATH /opt/conda/bin:$PATH
+
 RUN apt-get update --fix-missing && \
     apt-get install -y \
     wget bzip2 ca-certificates \
@@ -16,3 +20,4 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
     /opt/conda/bin/conda clean -afy
+
